@@ -1,0 +1,53 @@
+
+sudo mkdir -p /u01/app/oracle/{product/{java,fmw1036},admin/{aservers,mservers,system,runtime/{shared,logs}}}
+sudo mkdir -p /u01/app/oracle/{product/{java,fmw12212},admin/{aservers,mservers,system,runtime/{shared,logs}}}
+
+sudo mkdir -p /u02/app/oracle/{product/{java,fmw1036},admin/{aservers,mservers,system,runtime/{shared,logs}}}
+sudo mkdir -p /u02/app/oracle/{product/{java,fmw12212},admin/{aservers,mservers,system,runtime/{shared,logs}}}
+sudo chown -R oracle:oinstall  /u01
+sudo chown -R oracle:oinstall  /u02
+
+
+DATABASE ENVIRONMENT
+====================
+
+export ORACLE_BASE=/u01/app/oracle
+export ORACLE_HOME=/u01/app/oracle/product/11.2.0.1
+export PATH=$PATH:$ORACLE_HOME/bin
+export ORACLE_SID=idmdb
+export TNS_ADMIN=$ORACLE_HOME/network/admin
+
+TUNE ORACLE DATABASE PARAMETERS
+========================
+ALTER system SET processes=1000 scope=spfile;
+ALTER system SET sessions=1000 scope=spfile;
+ALTER system SET open_cursors=1000 scope=spfile;
+
+
+Cannot edit fstab in recovery mode. Filesystem is read only
+------------------------------------------------------------
+SOLUTION: 
+mount -o remount,rw /
+
+-----------------------------------------------------------------------
+NFS SHARE
+---------------------------------------------------
+Cat /etc/fstab
+192.168.110.90:/u01/repo            /u01/repo   nfs rw 0     0
+#192.168.110.90:/u01/software        /u01/software nfs rw 0     0
+#192.168.110.90:/var/OSimage/OL6.6   /var/OSimage/OL6.6 nfs defaults 0 0
+
+
+
+sudo vi /etc/selinux/config
+
+sudo service nfs restart
+sudo service rpcbind restart
+sudo chkconfig nfs on
+sudo chkconfig rpcbind on
+sudo service iptables stop
+sudo chkconfig iptables off
+
+
+
+ 

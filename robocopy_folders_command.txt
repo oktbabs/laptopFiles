@@ -1,0 +1,19 @@
+
+
+D:\u01\app\oracle\product>robocopy fmw122120 D:\FMW_INSTALL_BACKUP\fmw122120 /COPYALL /DCOPY:T /PURGE /MIR /XJ /R:
+
+D:\u01\app\oracle\admin>robocopy aservers  D:\FMW_INSTALL_BACKUP\aservers /COPYALL /DCOPY:T /PURGE /MIR /XJ /R:
+
+==================================================================================================================
+cd D:\FMW_INSTALL_BACKUP\ 
+
+robocopy aservers D:\u01\app\oracle\admin\aservers /COPYALL /DCOPY:T /PURGE /MIR /XJ /R:
+
+===================================================================================================================
+cd D:\FMW_INSTALL_BACKUP\ 
+
+d:
+
+robocopy aservers  D:\u01\app\oracle\admin\aservers /COPYALL /DCOPY:T /PURGE /MIR /XJ /R:
+=================================================================================================
+
